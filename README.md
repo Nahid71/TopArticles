@@ -7,8 +7,8 @@ run commend:
   2. pip install -r requirements/dev.txt
   3. python manage.py migrate
   4. python manage.py loaddata services.json
-for running crawl manually run:
+### For running crawl manually run:
   5. python manage.py crawl reddit hn github
-Finaly run:
+### Finaly run:
   6. python manage.py runserver
 Thats it Now its running at http://127.0.0.1:8000
