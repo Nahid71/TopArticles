@@ -1,0 +1,6 @@
+{% load services_url %}
+
+<ul class="menu-stories">
+  <li><a href="{% url 'services:index' service.slug %}">Hot</a></li>
+  <li><a href="{% url 'services:archive' service.slug %}">Archive</a></li>
+</ul>

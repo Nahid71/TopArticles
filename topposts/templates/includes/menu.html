@@ -1,0 +1,8 @@
+{% load startswith %}
+
+<div class="sidenav">
+  <li> <a href="{% url 'front_page' %}"{% if request.path == '/' %} class="active"{% endif %}>  &nbsp;  &nbsp;  &nbsp;     <i class="fas fa-home"></i> Home</a></li>
+  {% for slug in services_slugs %}
+    <li><a href="{% url 'services:index' slug %}"{% if request.path|startswith:slug %} class="active"{% endif %}> {% if slug == 'hn' %}<i class="fab fa-hacker-news-square"></i> Hacker News {% elif slug == 'github' %}<i class="fab fa-github"></i> Github {% else %}<i class="fab fa-reddit-alien"></i> Reddit   {% endif %}</a></li>
+  {% endfor %}
+</div>

@@ -1,0 +1,130 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Top Posts{% endblock %}</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+  <link href="{% static 'css/vendor/normalize.css' %}" rel="stylesheet">
+  <link href="{% static 'css/woid.css' %}" rel="stylesheet">
+  {% block stylesheet %}{% endblock %}
+  <style type="text/css">
+    .abs-center-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    .navbar {
+    min-height: 80px;
+}
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 20;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 170px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: green;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 250px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+  </style>
+</head>
+
+<body style="width:100%">
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark py-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar8">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-text">&nbsp;</span>
+    <div class="navbar-collapse collapse" id="navbar8">
+        <ul class="navbar-nav abs-center-x">
+            <li class="nav-item">
+                <h1 style="color:white;">Top Articles</h1>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li style="color:yellow;">     {% if user.is_authenticated %}
+     <a href="{% url 'front_page' %}">{{ user.username }}</a> / <a href="{% url 'logout' %}">logout</a>
+      {% else %}
+      <a href="{% url 'signup' %}">sign up</a> / <a href="{% url 'login' %}">login</a></
+      {% endif %}</li>
+        </ul>
+    </div>
+</nav>
+  <div class="wrapper">
+    <header>
+
+
+
+
+    </header>
+
+
+
+
+
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        <a href="javascript:void(0);" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% block menu %}
+
+
+      {% include 'includes/menu.html' %}
+      {% endblock %}
+       <div class="main">
+      {% block content %}{% endblock %}
+
+    <div class="push"></div>
+  </div>
+  <footer>
+    <a href="{% url 'about' %}">about</a>
+
+  </footer>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/ga.js' %}"></script>
+  <script src="{% static 'js/vendor/jquery-1.11.3.min.js' %}"></script>
+  <script src="{% static 'js/vendor/mustache.min.js' %}"></script>
+  <script src="{% static 'js/vendor/moment.min.js' %}"></script>
+  <script src="{% static 'js/vendor/moment-timezone-with-data-2010-2020.min.js' %}"></script>
+  <script src="{% static 'js/woid.js' %}"></script>
+  {% block javascript %}{% endblock %}
+  </div>
+</body>
+
+</html>
